@@ -119,9 +119,9 @@ iframe {
 <!-- NAVBAR -->
 <div class="navbar">
     <button onclick="showSection('home')">Okamani Chitti</button>
-    <button onclick="showSection('Hrogram')">Program</button>
-    <button onclick="showSection('Food')">Food</button>
-    <button onclick="showSection('Location')">Location</button>
+    <button onclick="showSection('program')">Program</button>
+    <button onclick="showSection('food')">Food Items</button>
+    <button onclick="showSection('location')">Location</button>
 </div>
 
 <!-- HOME -->
@@ -141,7 +141,7 @@ iframe {
 
 <!-- FOOD -->
 <div id="food" class="section active">
-    <h2>🍽 Food</h2>
+    <h2>🍽 Food Items</h2>
 
     <div class="food-container">
  <div class="food-card">
@@ -195,20 +195,16 @@ function showSection(id) {
 </html>
 
 <script>
-// SECTION SWITCH (SAFE)
 function showSection(id) {
-    document.querySelectorAll('.section').forEach(function(sec) {
-        sec.classList.remove('active');
+    let sections = document.querySelectorAll(".section");
+
+    sections.forEach(function(section) {
+        section.classList.remove("active");
     });
 
-    var section = document.getElementById(id);
-
-    if (section) {
-        section.classList.add('active');
-    } else {
-        console.log("Section not found:", id);
-    }
+    document.getElementById(id).classList.add("active");
 }
+
 
 // COUNTDOWN
 var countDate = new Date("May 1, 2026 16:00:00").getTime();
