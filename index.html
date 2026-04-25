@@ -18,6 +18,14 @@ body {
     color: white;
     overflow: hidden;
 }
+    
+.section {
+    display: none;
+}
+
+.active {
+    display: block;
+}
 
 /* NAVBAR */
 .navbar {
@@ -127,7 +135,7 @@ iframe {
 </div>
 
 <!-- PROGRAM -->
-<div id="program" class="section">
+<div id="program" class="section active">
     <h2>🎤 Program</h2>
     <p>Opening Speech</p>
     <p>Dance</p>
@@ -181,12 +189,19 @@ iframe {
 </div>
 
 <script>
-// SECTION SWITCH
+// SECTION SWITCH (SAFE)
 function showSection(id) {
-    document.querySelectorAll('.section').forEach(sec => {
+    document.querySelectorAll('.section').forEach(function(sec) {
         sec.classList.remove('active');
     });
-    document.getElementById(id).classList.add('active');
+
+    var section = document.getElementById(id);
+
+    if (section) {
+        section.classList.add('active');
+    } else {
+        console.log("Section not found:", id);
+    }
 }
 
 // COUNTDOWN
@@ -201,10 +216,10 @@ setInterval(function() {
     var minutes = Math.floor((distance % (1000*60*60))/(1000*60));
     var seconds = Math.floor((distance % (1000*60))/1000);
 
-    document.getElementById("countdown").innerHTML =
-        days+"d "+hours+"h "+minutes+"m "+seconds+"s";
+    var countdown = document.getElementById("countdown");
+    if(countdown){
+        countdown.innerHTML =
+            days+"d "+hours+"h "+minutes+"m "+seconds+"s";
+    }
 }, 1000);
 </script>
-
-</body>
-</html>
