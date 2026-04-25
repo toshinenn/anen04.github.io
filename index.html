@@ -6,17 +6,10 @@
 <title>ADBU A'chik Nokdang Farewell 2026</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
-}
-
 body {
-    scroll-behavior: smooth;
-    background: #111;
-    color: white;
+    margin: 0;
+    overflow: hidden; 
+    font-family: Arial;
 }
 
 /* NAVBAR */
@@ -130,9 +123,9 @@ iframe {
 
 <!-- NAVBAR -->
 <div class="navbar">
-    <button onclick="showSection('Okamani Chitti')">Okamani Chatti</button>
+    <button onclick="showSection('Home')">Okamani Chitti</button>
     <button onclick="showSection('Program')">Program</button>
-    <button onclick="showSection('Food')">Food</button>
+    <button onclick="showSection('Pood')">Food</button>
     <button onclick="showSection('Location')">Location</button>
 </div>
 
@@ -201,71 +194,6 @@ iframe {
     </a>
 </div>
 
-<style>
-body {
-    margin: 0;
-    overflow: hidden; /* 🚫 no scrolling */
-    font-family: Arial;
-}
-
-/* NAVBAR */
-.navbar {
-    position: fixed;
-    width: 100%;
-    background: black;
-    padding: 10px;
-    text-align: center;
-}
-
-.navbar button {
-    margin: 5px;
-    padding: 10px;
-    background: gold;
-    border: none;
-}
-
-/* SECTIONS */
-.section {
-    display: none;
-    height: 100vh;
-    padding-top: 60px;
-    text-align: center;
-}
-
-.active {
-    display: block;
-}
-
-/* COVER */
-.cover {
-    height: 100%;
-    background: url('cover.jpg') no-repeat center/cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* CARD */
-.card {
-    background: rgba(0,0,0,0.6);
-    padding: 20px;
-    color: gold;
-}
-
-/* FOOD IMAGE */
-img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-}
-
-/* MAP */
-iframe {
-    width: 90%;
-    height: 300px;
-    border: none;
-}
-</style>
 
 <script>
 // SWITCH SECTIONS
