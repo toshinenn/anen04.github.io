@@ -60,20 +60,51 @@ body {
 .cover {
     height: calc(100vh - 70px);
     background: url('cover.jpg') no-repeat center;
-    background-size: contain;
+    background-size: cover;
     background-color: black;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
 }
-
 /* CARD */
-.card {
-    background: rgba(40, 40, 40, 0.75);
-    padding: 25px;
-    border-radius: 15px;
-    color: #e0e0e0;
+.hero-card {
+    margin-top: 40px;
+    width: 90%;
+    max-width: 850px;
+    background: rgba(80, 76, 72, 0.75);
+    padding: 28px 20px;
+    border-radius: 18px;
+    text-align: center;
+    color: #f1f1f1;
+    backdrop-filter: blur(4px);
 }
+
+.hero-card h1 {
+    font-size: 30px;
+    margin-bottom: 22px;
+}
+
+.hero-card h2 {
+    font-size: 26px;
+    color: #f1f1f1 !important;
+}
+
+#countdown {
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+footer {
+    width: 100%;
+    background: rgba(20, 20, 20, 0.75);
+    padding: 18px;
+    text-align: center;
+    color: #e0e0e0;
+    font-size: 18px;
+}
+
+
 
 /* FORCE GREY HEADINGS */
 h1, h2, h3 {
@@ -149,10 +180,14 @@ iframe {
 
 <div id="home" class="section active">
     <div class="cover">
-        <div class="card">
+        <div class="hero-card">
             <h1>ADBU A'chik Nokdang Farewell 2026</h1>
             <p id="countdown"></p>
         </div>
+
+        <footer>
+            © 2026 <b>ADBU A'chik Family</b> | All rights reserved
+        </footer>
     </div>
 </div>
 
