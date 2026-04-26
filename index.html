@@ -3,274 +3,453 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Garo Farewell 2026</title>
+<title>A'chik Farewell 2026</title>
 
 <style>
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial;
 }
 
 body {
-    background: #121212;
-    color: #e0e0e0;
+    font-family: 'Segoe UI', sans-serif;
+    background: black;
+    color: white;
     overflow: hidden;
+}
+
+/* BACKGROUND COVER */
+.cover {
+    height: 100vh;
+    background-image: url('cover.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.75);
 }
 
 /* NAVBAR */
 .navbar {
     position: fixed;
+    top: 0;
     width: 100%;
-    background: #1a1a1a;
-    padding: 10px;
-    text-align: center;
-    z-index: 1000;
+    padding: 14px 10px;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    z-index: 100;
 }
 
 .navbar button {
-    margin: 5px;
-    padding: 10px 15px;
-    background: #2a2a2a;
-    color: #e0e0e0;
+    background: transparent;
     border: none;
-    border-radius: 6px;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
     cursor: pointer;
 }
 
 .navbar button:hover {
-    background: #444;
+    color: gold;
 }
 
-/* SECTIONS */
-.section {
+/* CENTER CARD */
+.main-card {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    max-width: 720px;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(8px);
+    padding: 28px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    z-index: 10;
+}
+
+.main-card h1 {
+    color: gold;
+    font-size: 34px;
+    margin-bottom: 12px;
+    text-shadow: 0 0 12px gold;
+}
+
+.main-card p {
+    font-size: 22px;
+    color: white;
+}
+
+/* CONFETTI */
+#confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2000;
+}
+
+/* POPUP */
+.popup {
     display: none;
-    height: 100vh;
-    padding-top: 70px;
-    text-align: center;
-    overflow-y: auto;
-}
-
-.active {
-    display: block;
-}
-
-/* COVER */
-.cover {
-    height: calc(100vh - 70px);
-    background: url('cover.jpg') no-repeat center;
-    background-size: cover;   /* 🔥 THIS FIXES IT */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    justify-content: center;
     align-items: center;
-}
-/* CARD */
-.hero-card {
-    margin-top: 40px;
-    width: 90%;
-    max-width: 850px;
-    background: rgba(80, 76, 72, 0.75);
-    padding: 28px 20px;
-    border-radius: 18px;
-    text-align: center;
-    color: #f1f1f1;
-    backdrop-filter: blur(4px);
-}
-
-.hero-card h1 {
-    font-size: 30px;
-    margin-bottom: 22px;
-}
-
-.hero-card h2 {
-    font-size: 26px;
-    color: #f1f1f1 !important;
-}
-
-#countdown {
-    margin-top: 15px;
-    font-size: 20px;
-}
-
-footer {
-    width: 100%;
-    background: rgba(20, 20, 20, 0.75);
     padding: 18px;
+}
+
+.popup-box {
+    position: relative;
+    width: 92%;
+    max-width: 850px;
+    max-height: 78vh;
+    background: black;
+    border-radius: 20px;
+    padding: 28px;
+    color: white;
+    box-shadow: 0 0 25px rgba(0,0,0,0.9);
+    overflow: hidden;
+}
+
+.popup-box h2 {
+    color: gold;
     text-align: center;
-    color: #e0e0e0;
-    font-size: 18px;
+    font-size: 34px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 12px gold;
 }
 
-
-
-/* FORCE GREY HEADINGS */
-h1, h2, h3 {
-    color: #d1d1d1 !important;
+.popup-content {
+    max-height: 55vh;
+    overflow-y: auto;
+    background: rgba(255,255,255,0.05);
+    padding: 22px;
+    border-radius: 14px;
+    font-size: 21px;
+    line-height: 1.9;
 }
 
-h2 {
-    margin-bottom: 15px;
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    background: #ff4b4b;
+    color: white;
+    border: none;
+    font-size: 34px;
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    cursor: pointer;
 }
 
-/* PROGRAM */
-#program p {
-    margin: 12px;
-    font-size: 18px;
+/* OKAMANI */
+.okamani-text {
+    text-align: justify;
+    font-family: Georgia, serif;
 }
 
-/* FOOD */
-.food-container {
-    min-height: calc(100vh - 140px);
-    padding-bottom: 40px;
+/* FOOD STACK */
+.food-stack {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 22px;
-    margin-top: 20px;
+    gap: 18px;
 }
 
 .food-card {
-    background: #1f1f1f;
-    padding: 15px;
-    border-radius: 15px;
-    width: 80%;
-    max-width: 320px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 12px;
 }
 
 .food-card img {
-    width: 100%;
-    height: 180px;
+    width: 150px;
+    height: 120px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 .food-card p {
-    margin-top: 10px;
-    color: #cccccc;
-    font-size: 17px;
+    color: gold;
+    font-size: 23px;
+    font-weight: 600;
 }
 
-/* MAP */
-iframe {
-    width: 90%;
+/* LOCATION */
+.map-box iframe {
+    width: 100%;
     height: 300px;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
-.location-text {
-    margin-top: 15px;
-    color: #cccccc;
-    padding: 0 20px;
+.address {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 20px;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .navbar {
+        gap: 10px;
+        padding: 12px 4px;
+    }
+
+    .navbar button {
+        font-size: 14px;
+    }
+
+    .main-card {
+        width: 85%;
+        padding: 22px;
+    }
+
+    .main-card h1 {
+        font-size: 24px;
+    }
+
+    .main-card p {
+        font-size: 18px;
+    }
+
+    .popup-box {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .popup-box h2 {
+        font-size: 27px;
+    }
+
+    .popup-content {
+        font-size: 18px;
+        line-height: 1.8;
+    }
+
+    .food-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .food-card img {
+        width: 100%;
+        height: 180px;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- BACKGROUND -->
+<div class="cover"></div>
+
+<!-- NAVBAR -->
 <div class="navbar">
-    <button onclick="showSection('home')">Okamani Chitti</button>
-    <button onclick="showSection('program')">Program</button>
-    <button onclick="showSection('food')">Food Items</button>
-    <button onclick="showSection('location')">Location</button>
+    <button onclick="openPopup('okamaniPopup')">Okamani Chitti</button>
+    <button onclick="openPopup('programPopup')">Program</button>
+    <button onclick="openPopup('foodPopup')">Food Items</button>
+    <button onclick="openPopup('locationPopup')">Location</button>
 </div>
 
-<div id="home" class="section active">
-    <div class="cover">
-        <div class="hero-card">
-            <h1>ADBU A'chik Nokdang Farewell 2026</h1>
-            <p id="countdown"></p>
-        </div>
-
-        <footer>
-            © 2026 <b>ADBU A'chik Family</b> | All rights reserved
-        </footer>
-    </div>
+<!-- MAIN COVER CARD -->
+<div class="main-card">
+    <h1>A'chik Farewell 2026</h1>
+    <p id="countdown">Loading...</p>
 </div>
 
-<div id="program" class="section">
-    <h2>🎤 Program</h2>
-    <p>Opening Speech</p>
-    <p>Dance</p>
-    <p>Music</p>
-</div>
+<canvas id="confetti"></canvas>
 
-<div id="food" class="section">
-    <h2>🍽 Food Items</h2>
+<!-- OKAMANI POPUP -->
+<div id="okamaniPopup" class="popup">
+    <div class="popup-box">
+        <button class="close-btn" onclick="closePopup('okamaniPopup')">×</button>
+        <h2>Okamani Chitti</h2>
 
-    <div class="food-container">
-        <div class="food-card">
-            <img src="doo_kappa.jpg">
-            <p>Do'o Kappa</p>
-        </div>
-
-        <div class="food-card">
-            <img src="wak_tangsek_pura.jpg ">
-            <p>Wak Tangsek Pura</p>
-        </div>
-
-        <div class="food-card">
-            <img src="gominda_wak.jpg">
-            <p>Gominda Wak</p>
-        </div>
-
-        <div class="food-card">
-            <img src="dochi_rita.jpg">
-            <p>Do'chi Rita</p>
-        </div>
-
-        <div class="food-card">
-            <img src="dal.jpg">
-            <p>Dal</p>
-        </div>
-
-        <div class="food-card">
-            <img src="mi.jpg">
-            <p>Mi</p>
+        <div class="popup-content okamani-text">
+            <p>
+                Add your Okamani Chitti message here.
+                Later you can paste the full message properly in this area.
+            </p>
         </div>
     </div>
 </div>
 
-<div id="location" class="section">
-    <h2>📍 Location</h2>
+<!-- PROGRAM POPUP -->
+<div id="programPopup" class="popup">
+    <div class="popup-box">
+        <button class="close-btn" onclick="closePopup('programPopup')">×</button>
+        <h2>Program Schedule</h2>
 
-    <a href="https://maps.google.com/?q=Hotel+Neexotica+Banquet+Hall+Azara+Guwahati" target="_blank">
-        <iframe src="https://maps.google.com/maps?q=Hotel+Neexotica+Banquet+Hall+Azara+Guwahati&output=embed"></iframe>
-    </a>
+        <div class="popup-content">
+            <p>1. Welcome Address</p>
+            <p>2. Opening Prayer</p>
+            <p>3. Felicitation of Guest</p>
+            <p>4. Welcome Speech</p>
+            <p>5. Welcome Song</p>
+            <p>6. Introduction of Committee Members</p>
+            <p>7. Speech by Guest</p>
+            <p>8. Cultural Program</p>
+            <p>9. Dinner</p>
+            <p>10. Open Dance Floor</p>
+            <p>11. Departure</p>
+        </div>
+    </div>
+</div>
 
-    <p class="location-text">
-        Hotel Neexotica, Banquet Hall, Azara, Opp. Mountain Shadow, Guwahati - 781017
-    </p>
+<!-- FOOD POPUP -->
+<div id="foodPopup" class="popup">
+    <div class="popup-box">
+        <button class="close-btn" onclick="closePopup('foodPopup')">×</button>
+        <h2>Food Items</h2>
+
+        <div class="popup-content">
+            <div class="food-stack">
+
+                <div class="food-card">
+                    <img src="doo_kappa.jpg">
+                    <p>Do'o Kappa</p>
+                </div>
+
+                <div class="food-card">
+                    <img src="wak_tangsek_pura.jpg">
+                    <p>Wak Tangsek Pura</p>
+                </div>
+
+                <div class="food-card">
+                    <img src="gominda_wak.jpg">
+                    <p>Gominda Wak</p>
+                </div>
+
+                <div class="food-card">
+                    <img src="dochi_rita.jpg">
+                    <p>Do'chi Rita</p>
+                </div>
+
+                <div class="food-card">
+                    <img src="dal.jpg">
+                    <p>Dal</p>
+                </div>
+
+                <div class="food-card">
+                    <img src="mi.jpg">
+                    <p>Mi</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- LOCATION POPUP -->
+<div id="locationPopup" class="popup">
+    <div class="popup-box">
+        <button class="close-btn" onclick="closePopup('locationPopup')">×</button>
+        <h2>Location</h2>
+
+        <div class="popup-content">
+            <div class="map-box">
+                <a href="https://maps.google.com/?q=Hotel+Neexotica+Banquet+Hall+Azara+Guwahati" target="_blank">
+                    <iframe src="https://maps.google.com/maps?q=Hotel+Neexotica+Banquet+Hall+Azara+Guwahati&output=embed"></iframe>
+                </a>
+            </div>
+
+            <p class="address">
+                Hotel Neexotica,<br>
+                Banquet Hall,<br>
+                Azara, Opp. Mountain Shadow,<br>
+                Guwahati - 781017.
+            </p>
+        </div>
+    </div>
 </div>
 
 <script>
-function showSection(id) {
-    let sections = document.querySelectorAll(".section");
-
-    sections.forEach(function(section) {
-        section.classList.remove("active");
-    });
-
-    document.getElementById(id).classList.add("active");
+/* POPUP */
+function openPopup(id) {
+    document.getElementById(id).style.display = "flex";
 }
 
-var countDate = new Date("May 1, 2026 2:00:00").getTime();
+function closePopup(id) {
+    document.getElementById(id).style.display = "none";
+}
 
-setInterval(function() {
+/* COUNTDOWN */
+var countDate = new Date("May 1, 2026 02:00:00").getTime();
+
+var timer = setInterval(function() {
     var now = new Date().getTime();
     var distance = countDate - now;
 
-    var days = Math.floor(distance / (1000*60*60*24));
-    var hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
-    var minutes = Math.floor((distance % (1000*60*60))/(1000*60));
-    var seconds = Math.floor((distance % (1000*60))/1000);
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    document.getElementById("countdown").innerHTML =
-        days+"d "+hours+"h "+minutes+"m "+seconds+"s";
+    if (distance > 0) {
+        document.getElementById("countdown").innerHTML =
+            days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    } else {
+        clearInterval(timer);
+        document.getElementById("countdown").innerHTML = "🎉 IT'S TIME 🎉";
+        startConfetti();
+    }
 }, 1000);
+
+/* CONFETTI */
+function startConfetti() {
+    var canvas = document.getElementById("confetti");
+    var ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    var pieces = [];
+
+    for (let i = 0; i < 130; i++) {
+        pieces.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 7 + 3,
+            speed: Math.random() * 3 + 2,
+            color: "hsl(" + Math.random() * 360 + ",100%,60%)"
+        });
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        pieces.forEach(p => {
+            p.y += p.speed;
+
+            if (p.y > canvas.height) {
+                p.y = -10;
+                p.x = Math.random() * canvas.width;
+            }
+
+            ctx.fillStyle = p.color;
+            ctx.fillRect(p.x, p.y, p.size, p.size);
+        });
+
+        requestAnimationFrame(draw);
+    }
+
+    draw();
+}
 </script>
 
 </body>
 </html>
+
